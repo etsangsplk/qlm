@@ -1,7 +1,5 @@
 package qlm
 
-import "encoding/xml"
-
 type Objects struct {
 	Version string   `xml:"version,attr"`
 	Objects []Object `xml:"Object"`
@@ -49,14 +47,4 @@ type Value struct {
 	Type     string `xml:"type,attr"`
 	DateTime string `xml:"dateTime,attr"`
 	UnixTime int64  `xml:"unixTime,attr"`
-}
-
-func Unmarshal(data []byte) (*Objects, error) {
-	v := &Objects{}
-
-	if err := xml.Unmarshal(data, v); err != nil {
-		return nil, err
-	}
-
-	return v, nil
 }
