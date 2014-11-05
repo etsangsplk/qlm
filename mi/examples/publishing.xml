@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qlm:qlmEnvelope ttl="-1" version="1.0">
+    <qlm:write msgformat="QLMdf">
+        <qlm:msg>
+            <Objects>
+                <Object>
+                    <id>SmartFridge22334411</id>
+                    <InfoItem name="FridgeTemperatureSetpoint">
+                        <value>3.5</value>
+                    </InfoItem>
+                </Object>
+            </Objects>
+        </qlm:msg>
+    </qlm:write>
+</qlm:qlmEnvelope>

@@ -1,0 +1,36 @@
+<!-- Example of a response message using several different payloads. -->
+<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
+    <qlm:response>
+        <qlm:result msgformat="obix">
+            <qlm:return returnCode="200"></qlm:return>
+            <qlm:requestId>REQ0011212121212</qlm:requestId>
+            <qlm:msg xsi:schemaLocation="http://obix.org/ns/schema/1.0/obix.xsd" xmlns="http://obix.org/ns/schema/1.0">
+                <obj href="http://myhome/thermostat" >
+                    <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
+                    <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
+                    <bool name="furnaceOn" val="true"/>
+                </obj>
+            </qlm:msg>
+        </qlm:result>
+        <qlm:result msgformat="CSV">
+            <qlm:return returnCode="200"></qlm:return>
+            <qlm:requestId>REQ232323</qlm:requestId>
+            <qlm:msg>11,22,33
+                44,55,66</qlm:msg>
+        </qlm:result>
+        <qlm:result msgformat="QLMdf">
+            <qlm:return returnCode="200"></qlm:return>
+            <qlm:requestId>REQ654534</qlm:requestId>
+            <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+                <Objects>
+                    <Object>
+                        <id>SmartFridge22334411</id>
+                        <InfoItem name="PowerConsumption">
+                            <value>43</value>
+                        </InfoItem>
+                    </Object>
+                </Objects>
+            </qlm:msg>
+        </qlm:result>
+    </qlm:response>
+</qlm:qlmEnvelope>

@@ -1,0 +1,21 @@
+<!-- Example of a simple reply message using QLMdf payload. Namespace based validation included. -->
+<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
+    <qlm:response>
+        <qlm:result msgformat="QLMdf">
+            <qlm:return returnCode="200"></qlm:return>
+            <qlm:requestId>REQ654534</qlm:requestId>
+            <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+                <Objects>
+                    <Object>
+                        <id>SmartFridge22334411</id>
+                        <!-- Only most recent value, bogus timestamp. -->
+                        <InfoItem name="PowerConsumption">
+                            <value type="xs:int" unixTime="5453563">43</value>
+                        </InfoItem>
+                    </Object>
+                </Objects>
+            </qlm:msg>
+        </qlm:result>
+    </qlm:response>
+</qlm:qlmEnvelope>
+
