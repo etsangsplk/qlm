@@ -1,4 +1,4 @@
-package qlm
+package df
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -154,7 +154,7 @@ func TestUnmarshalWithInfoItemWithComplexDescription(t *testing.T) {
 	}
 }
 func TestUnmarshalMeasurementValuesForRefrigeratorPowerConsumption(t *testing.T) {
-	data, err := ioutil.ReadFile("../examples/measurement_values_for_refrigerator_power_consumption.xml")
+	data, err := ioutil.ReadFile("examples/measurement_values_for_refrigerator_power_consumption.xml")
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {
@@ -187,7 +187,7 @@ func TestUnmarshalMeasurementValuesForRefrigeratorPowerConsumption(t *testing.T)
 }
 
 func TestUnmarshalMetadataAboutRefrigeratorPowerConsumption(t *testing.T) {
-	data, err := ioutil.ReadFile("../examples/metadata_about_refrigerator_power_consumption.xml")
+	data, err := ioutil.ReadFile("examples/metadata_about_refrigerator_power_consumption.xml")
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {
@@ -242,7 +242,7 @@ func TestUnmarshalMetadataAboutRefrigeratorPowerConsumption(t *testing.T) {
 }
 
 func TestUnmarshalObjectObjectInfoitemValues(t *testing.T) {
-	data, err := ioutil.ReadFile("../examples/object_object_infoitem_values.xml")
+	data, err := ioutil.ReadFile("examples/object_object_infoitem_values.xml")
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {
@@ -292,7 +292,7 @@ func TestUnmarshalObjectObjectInfoitemValues(t *testing.T) {
 }
 
 func TestUnmarshalObjectWithSubObjects(t *testing.T) {
-	data, err := ioutil.ReadFile("../examples/object_with_sub_objects.xml")
+	data, err := ioutil.ReadFile("examples/object_with_sub_objects.xml")
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {

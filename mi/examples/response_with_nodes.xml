@@ -1,0 +1,11 @@
+<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
+    <qlm:response>
+        <qlm:result>
+            <qlm:return returnCode="200"></qlm:return>
+            <qlm:nodeList type="URL">
+                <qlm:node>http://192.168.0.1/</qlm:node>
+                <qlm:node>http://192.168.0.2/</qlm:node>
+            </qlm:nodeList>
+        </qlm:result>
+    </qlm:response>
+</qlm:qlmEnvelope>

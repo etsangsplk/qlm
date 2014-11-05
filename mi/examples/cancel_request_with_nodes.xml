@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
+    <qlm:cancel>
+        <qlm:requestId>REQ0011212121212</qlm:requestId>
+        <qlm:nodeList type="URL">
+            <qlm:node>http://192.168.0.1/</qlm:node>
+            <qlm:node>http://192.168.0.2/</qlm:node>
+        </qlm:nodeList>
+    </qlm:cancel>
+</qlm:qlmEnvelope>
