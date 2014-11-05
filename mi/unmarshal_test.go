@@ -54,8 +54,8 @@ func TestUnmarshalErrorResponse(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, 0, v.Ttl)
-			if assert.Len(t, v.Responses, 1) {
-				assert.Equal(t, "404", v.Responses[0].Return.ReturnCode)
+			if assert.Len(t, v.Response.Results, 1) {
+				assert.Equal(t, "404", v.Response.Results[0].Return.ReturnCode)
 			}
 		}
 	}
@@ -66,8 +66,8 @@ func TestUnmarshalErrorResponseWithDescription(t *testing.T) {
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {
-			if assert.Len(t, v.Responses, 1) {
-				assert.Equal(t, "Not Found", v.Responses[0].Return.Description)
+			if assert.Len(t, v.Response.Results, 1) {
+				assert.Equal(t, "Not Found", v.Response.Results[0].Return.Description)
 			}
 		}
 	}
@@ -80,27 +80,27 @@ func TestUnmarshalMultiplePayloadResponse(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, 10, v.Ttl)
-			if assert.Len(t, v.Responses, 3) {
-				assert.Equal(t, "obix", v.Responses[0].MsgFormat)
-				assert.Equal(t, "200", v.Responses[0].Return.ReturnCode)
-				assert.Equal(t, "REQ0011212121212", v.Responses[0].RequestId.Text)
+			if assert.Len(t, v.Response.Results, 3) {
+				assert.Equal(t, "obix", v.Response.Results[0].MsgFormat)
+				assert.Equal(t, "200", v.Response.Results[0].Return.ReturnCode)
+				assert.Equal(t, "REQ0011212121212", v.Response.Results[0].RequestId.Text)
 				assert.Equal(t, `
                 <obj href="http://myhome/thermostat" >
                     <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
                     <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
                     <bool name="furnaceOn" val="true"/>
                 </obj>
-            `, v.Responses[0].Message.Data)
+            `, v.Response.Results[0].Message.Data)
 
-				assert.Equal(t, "CSV", v.Responses[1].MsgFormat)
-				assert.Equal(t, "200", v.Responses[1].Return.ReturnCode)
-				assert.Equal(t, "REQ232323", v.Responses[1].RequestId.Text)
+				assert.Equal(t, "CSV", v.Response.Results[1].MsgFormat)
+				assert.Equal(t, "200", v.Response.Results[1].Return.ReturnCode)
+				assert.Equal(t, "REQ232323", v.Response.Results[1].RequestId.Text)
 				assert.Equal(t, `11,22,33
-                44,55,66`, v.Responses[1].Message.Data)
+                44,55,66`, v.Response.Results[1].Message.Data)
 
-				assert.Equal(t, "QLMdf", v.Responses[2].MsgFormat)
-				assert.Equal(t, "200", v.Responses[2].Return.ReturnCode)
-				assert.Equal(t, "REQ654534", v.Responses[2].RequestId.Text)
+				assert.Equal(t, "QLMdf", v.Response.Results[2].MsgFormat)
+				assert.Equal(t, "200", v.Response.Results[2].Return.ReturnCode)
+				assert.Equal(t, "REQ654534", v.Response.Results[2].RequestId.Text)
 				assert.Equal(t, `
                 <Objects>
                     <Object>
@@ -110,7 +110,7 @@ func TestUnmarshalMultiplePayloadResponse(t *testing.T) {
                         </InfoItem>
                     </Object>
                 </Objects>
-            `, v.Responses[2].Message.Data)
+            `, v.Response.Results[2].Message.Data)
 			}
 		}
 	}
@@ -194,10 +194,10 @@ func TestUnmarshalReadResponseMetadata(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, 10, v.Ttl)
-			if assert.Len(t, v.Responses, 1) {
-				assert.Equal(t, "QLMdf", v.Responses[0].MsgFormat)
-				assert.Equal(t, "200", v.Responses[0].Return.ReturnCode)
-				assert.Equal(t, "REQ654534", v.Responses[0].RequestId.Text)
+			if assert.Len(t, v.Response.Results, 1) {
+				assert.Equal(t, "QLMdf", v.Response.Results[0].MsgFormat)
+				assert.Equal(t, "200", v.Response.Results[0].Return.ReturnCode)
+				assert.Equal(t, "REQ654534", v.Response.Results[0].RequestId.Text)
 				assert.Equal(t, `
                 <Objects>
                     <Object>
@@ -226,7 +226,7 @@ func TestUnmarshalReadResponseMetadata(t *testing.T) {
                         </InfoItem>
                     </Object>
                 </Objects>
-            `, v.Responses[0].Message.Data)
+            `, v.Response.Results[0].Message.Data)
 			}
 		}
 	}
@@ -237,8 +237,8 @@ func TestUnmarshalReadResponseWithRequestIdFormat(t *testing.T) {
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
 		if assert.Nil(t, err) {
-			if assert.Len(t, v.Responses, 1) {
-				assert.Equal(t, "REQ", v.Responses[0].RequestId.Format)
+			if assert.Len(t, v.Response.Results, 1) {
+				assert.Equal(t, "REQ", v.Response.Results[0].RequestId.Format)
 			}
 		}
 	}
@@ -247,11 +247,11 @@ func TestUnmarshalResponseWithNodes(t *testing.T) {
 	data, err := ioutil.ReadFile("examples/response_with_nodes.xml")
 	if assert.Nil(t, err) {
 		v, err := Unmarshal(data)
-		if assert.Nil(t, err) && assert.Len(t, v.Responses, 1) {
-			assert.Equal(t, "URL", v.Responses[0].NodeList.Type)
-			if assert.Len(t, v.Responses[0].NodeList.Nodes, 2) {
-				assert.Equal(t, "http://192.168.0.1/", v.Responses[0].NodeList.Nodes[0])
-				assert.Equal(t, "http://192.168.0.2/", v.Responses[0].NodeList.Nodes[1])
+		if assert.Nil(t, err) && assert.Len(t, v.Response.Results, 1) {
+			assert.Equal(t, "URL", v.Response.Results[0].NodeList.Type)
+			if assert.Len(t, v.Response.Results[0].NodeList.Nodes, 2) {
+				assert.Equal(t, "http://192.168.0.1/", v.Response.Results[0].NodeList.Nodes[0])
+				assert.Equal(t, "http://192.168.0.2/", v.Response.Results[0].NodeList.Nodes[1])
 			}
 		}
 	}
@@ -264,8 +264,8 @@ func TestUnmarshalTypicalMinimalResponse(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "0.2", v.Version)
 			assert.Equal(t, 0, v.Ttl)
-			if assert.Len(t, v.Responses, 1) {
-				assert.Equal(t, "200", v.Responses[0].Return.ReturnCode)
+			if assert.Len(t, v.Response.Results, 1) {
+				assert.Equal(t, "200", v.Response.Results[0].Return.ReturnCode)
 			}
 		}
 	}
