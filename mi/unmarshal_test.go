@@ -296,3 +296,14 @@ func TestUnmarshalWriteRequest(t *testing.T) {
 		}
 	}
 }
+
+func TestUnmarshalReadRequestPointers(t *testing.T) {
+	data, err := ioutil.ReadFile("examples/read_request.xml")
+	if assert.Nil(t, err) {
+		v, err := Unmarshal(data)
+		if assert.Nil(t, err) {
+			assert.Nil(t, v.Write)
+			assert.NotNil(t, v.Read)
+		}
+	}
+}
