@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="-1">
-    <qlm:write msgformat="QLMdf" targetType="device">
-        <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+<omi:omiEnvelope xmlns:omi="omi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="omi.xsd" version="1.0" ttl="-1">
+    <omi:write msgformat="odf" targetType="device">
+        <omi:msg xmlns="odf.xsd" xsi:schemaLocation="odf.xsd">
             <Objects>
                 <Object>
                     <id>SmartFridge22334411</id>
@@ -13,6 +13,6 @@
                     </InfoItem>
                 </Object>
             </Objects>
-        </qlm:msg>
-    </qlm:write>
-</qlm:qlmEnvelope>
+        </omi:msg>
+    </omi:write>
+</omi:omiEnvelope>

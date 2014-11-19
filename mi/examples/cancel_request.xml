@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Example of QLM cancel message for cancelling two requests with different request IDs. -->
-<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
-    <qlm:cancel>
-        <qlm:requestId>REQ0011212121212</qlm:requestId>
-        <qlm:requestId>REQ0011212121213</qlm:requestId>
-    </qlm:cancel>
-</qlm:qlmEnvelope>
+<!-- Example of O-MI cancel message for cancelling two requests with different request IDs. -->
+<omi:omiEnvelope xmlns:omi="omi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="omi.xsd" version="1.0" ttl="10">
+    <omi:cancel>
+        <omi:requestId>REQ0011212121212</omi:requestId>
+        <omi:requestId>REQ0011212121213</omi:requestId>
+    </omi:cancel>
+</omi:omiEnvelope>

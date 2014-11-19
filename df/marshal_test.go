@@ -11,19 +11,19 @@ func AssertXML(t *testing.T, objects Objects, expected string) bool {
 }
 
 func TestMarshalWithoutObjects(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd"></Objects>`
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd"></Objects>`
 	objects := Objects{}
 	AssertXML(t, objects, expected)
 }
 
 func TestMarshalSchemaVersion(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd" version="1.0"></Objects>`
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd" version="1.0"></Objects>`
 	objects := Objects{Version: "1.0"}
 	AssertXML(t, objects, expected)
 }
 
 func TestMarshalWithEmptyObject(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object></Object>
 </Objects>`
 	objects := Objects{
@@ -35,7 +35,7 @@ func TestMarshalWithEmptyObject(t *testing.T) {
 }
 
 func TestMarshalWithObjectWithAttributes(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="SOME_CLASS_PREFERABLY_DEFINED_BY_UDEF" udef="appropriate.udef.code">
         <id>SmartFridge22334411</id>
     </Object>
@@ -53,7 +53,7 @@ func TestMarshalWithObjectWithAttributes(t *testing.T) {
 }
 
 func TestMarshalWithObjectWithComplexId(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object>
         <id idType="some id type" tagType="some tag type" startDate="2013-10-26T21:32:52" endDate="2015-10-26T21:32:52" udef="appropriate.udef.code">SmartFridge22334411</id>
     </Object>
@@ -76,7 +76,7 @@ func TestMarshalWithObjectWithComplexId(t *testing.T) {
 }
 
 func TestMarshalWithInfoItemWithOtherNames(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="Refrigerator Assembly Product">
         <id>SmartFridge22334411</id>
         <InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -107,7 +107,7 @@ func TestMarshalWithInfoItemWithOtherNames(t *testing.T) {
 }
 
 func TestMarshalWithInfoItemWithUnixTimestampInValue(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="Refrigerator Assembly Product">
         <id>SmartFridge22334411</id>
         <InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -139,7 +139,7 @@ func TestMarshalWithInfoItemWithUnixTimestampInValue(t *testing.T) {
 }
 
 func TestMarshalWithObjectWithComplexDescription(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="Refrigerator Assembly Product">
         <id>SmartFridge22334411</id>
         <description lang="en" udef="appropriate.udef.code">Power consumption values with timestamp.</description>
@@ -162,7 +162,7 @@ func TestMarshalWithObjectWithComplexDescription(t *testing.T) {
 }
 
 func TestMarshalWithInfoItemWithComplexDescription(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="Refrigerator Assembly Product">
         <id>SmartFridge22334411</id>
         <InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -193,7 +193,7 @@ func TestMarshalWithInfoItemWithComplexDescription(t *testing.T) {
 }
 
 func TestMarshalMeasurementValuesForRefrigeratorPowerConsumption(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="Refrigerator Assembly Product">
         <id>SmartFridge22334411</id>
         <InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -249,7 +249,7 @@ func TestMarshalMeasurementValuesForRefrigeratorPowerConsumption(t *testing.T) {
 }
 
 func TestMarshalMetadataAboutRefrigeratorPowerConsumption(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object>
         <id>SmartFridge22334411</id>
         <InfoItem name="PowerConsumption">
@@ -352,7 +352,7 @@ func TestMarshalMetadataAboutRefrigeratorPowerConsumption(t *testing.T) {
 }
 
 func TestMarshalObjectObjectInfoitemValues(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="someType">
         <id>UniqueTargetID_1</id>
         <InfoItem name="InfoItem1">
@@ -445,7 +445,7 @@ func TestMarshalObjectObjectInfoitemValues(t *testing.T) {
 }
 
 func TestMarshalObjectWithSubObjects(t *testing.T) {
-	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+	expected := `<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
     <Object type="SOME_CLASS_PREFERABLY_DEFINED_BY_UDEF" udef="appropriate.udef.code">
         <id>UniqueObjectID_1</id>
         <InfoItem udef="appropriate.udef.code" name="SOME_CLASS_PREFERABLY_DEFINED_BY_UDEF"></InfoItem>

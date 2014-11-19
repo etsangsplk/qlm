@@ -5,19 +5,19 @@ import (
 	"testing"
 )
 
-func assertXML(t *testing.T, envelope QlmEnvelope, expected string) bool {
+func assertXML(t *testing.T, envelope OmiEnvelope, expected string) bool {
 	actual, err := Marshal(envelope)
 	return assert.Nil(t, err) && assert.Equal(t, expected, (string)(actual))
 }
 
 func TestMarshalCancelRequest(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <cancel>
         <requestId>REQ0011212121212</requestId>
         <requestId>REQ0011212121213</requestId>
     </cancel>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Cancel: &CancelRequest{
@@ -31,7 +31,7 @@ func TestMarshalCancelRequest(t *testing.T) {
 }
 
 func TestMarshalCancelRequestWithNodes(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <cancel>
         <requestId>REQ0011212121212</requestId>
         <nodeList type="URL">
@@ -39,8 +39,8 @@ func TestMarshalCancelRequestWithNodes(t *testing.T) {
             <node>http://192.168.0.2/</node>
         </nodeList>
     </cancel>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Cancel: &CancelRequest{
@@ -60,14 +60,14 @@ func TestMarshalCancelRequestWithNodes(t *testing.T) {
 }
 
 func TestMarshalErrorResponse(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="0">
+	expected := `<omiEnvelope version="1.0" ttl="0">
     <response>
         <result>
             <return returnCode="404"></return>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     0,
 		Response: &Response{
@@ -82,14 +82,14 @@ func TestMarshalErrorResponse(t *testing.T) {
 }
 
 func TestMarshalErrorResponseWithDescription(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="0">
+	expected := `<omiEnvelope version="1.0" ttl="0">
     <response>
         <result>
             <return returnCode="404" description="Not Found"></return>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     0,
 		Response: &Response{
@@ -107,7 +107,7 @@ func TestMarshalErrorResponseWithDescription(t *testing.T) {
 }
 
 func TestMarshalMultiplePayloadResponse(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <response>
         <result msgformat="obix">
             <return returnCode="200"></return>
@@ -126,7 +126,7 @@ func TestMarshalMultiplePayloadResponse(t *testing.T) {
             <msg>11,22,33
                 44,55,66</msg>
         </result>
-        <result msgformat="QLMdf">
+        <result msgformat="odf">
             <return returnCode="200"></return>
             <requestId>REQ654534</requestId>
             <msg>
@@ -141,8 +141,8 @@ func TestMarshalMultiplePayloadResponse(t *testing.T) {
             </msg>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Response: &Response{
@@ -171,7 +171,7 @@ func TestMarshalMultiplePayloadResponse(t *testing.T) {
 					},
 				},
 				RequestResult{
-					MsgFormat: "QLMdf",
+					MsgFormat: "odf",
 					Return:    &Return{ReturnCode: "200"},
 					RequestId: &Id{Text: "REQ654534"},
 					Message: &Message{
@@ -194,8 +194,8 @@ func TestMarshalMultiplePayloadResponse(t *testing.T) {
 }
 
 func TestMarshalPublishing(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="-1">
-    <write msgformat="QLMdf">
+	expected := `<omiEnvelope version="1.0" ttl="-1">
+    <write msgformat="odf">
         <msg>
             <Objects>
                 <Object>
@@ -207,12 +207,12 @@ func TestMarshalPublishing(t *testing.T) {
             </Objects>
         </msg>
     </write>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     -1,
 		Write: &WriteRequest{
-			MsgFormat: "QLMdf",
+			MsgFormat: "odf",
 			Message: &Message{
 				Data: `
             <Objects>
@@ -230,8 +230,8 @@ func TestMarshalPublishing(t *testing.T) {
 }
 
 func TestMarshalReadRequest(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
-    <read msgformat="QLM_mf.xsd" interval="3.5" oldest="10" newest="15" begin="2014-01-01T00:00" end="2014-02-01T00:00">
+	expected := `<omiEnvelope version="1.0" ttl="10">
+    <read msgformat="omi.xsd" interval="3.5" oldest="10" newest="15" begin="2014-01-01T00:00" end="2014-02-01T00:00">
         <msg>
             <Objects>
                 <Object>
@@ -241,12 +241,12 @@ func TestMarshalReadRequest(t *testing.T) {
             </Objects>
         </msg>
     </read>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Read: &ReadRequest{
-			MsgFormat: "QLM_mf.xsd",
+			MsgFormat: "omi.xsd",
 			Interval:  3.5,
 			Oldest:    10,
 			Newest:    15,
@@ -267,8 +267,8 @@ func TestMarshalReadRequest(t *testing.T) {
 }
 
 func TestMarshalReadRequestWithCallback(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
-    <read msgformat="QLM_mf.xsd" callback="http://192.168.0.1/">
+	expected := `<omiEnvelope version="1.0" ttl="10">
+    <read msgformat="omi.xsd" callback="http://192.168.0.1/">
         <msg>
             <Objects>
                 <Object>
@@ -278,12 +278,12 @@ func TestMarshalReadRequestWithCallback(t *testing.T) {
             </Objects>
         </msg>
     </read>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Read: &ReadRequest{
-			MsgFormat: "QLM_mf.xsd",
+			MsgFormat: "omi.xsd",
 			Callback:  "http://192.168.0.1/",
 			Message: &Message{
 				Data: `
@@ -300,8 +300,8 @@ func TestMarshalReadRequestWithCallback(t *testing.T) {
 }
 
 func TestMarshalReadRequestWithNodes(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
-    <read msgformat="QLM_mf.xsd">
+	expected := `<omiEnvelope version="1.0" ttl="10">
+    <read msgformat="omi.xsd">
         <nodeList type="URL">
             <node>http://192.168.0.1/</node>
             <node>http://192.168.0.2/</node>
@@ -315,12 +315,12 @@ func TestMarshalReadRequestWithNodes(t *testing.T) {
             </Objects>
         </msg>
     </read>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Read: &ReadRequest{
-			MsgFormat: "QLM_mf.xsd",
+			MsgFormat: "omi.xsd",
 			NodeList: &NodeList{
 				Type: "URL",
 				Nodes: []string{
@@ -343,9 +343,9 @@ func TestMarshalReadRequestWithNodes(t *testing.T) {
 }
 
 func TestMarshalReadResponseMetadata(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <response>
-        <result msgformat="QLMdf">
+        <result msgformat="odf">
             <return returnCode="200"></return>
             <requestId>REQ654534</requestId>
             <msg>
@@ -379,14 +379,14 @@ func TestMarshalReadResponseMetadata(t *testing.T) {
             </msg>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Response: &Response{
 			Results: []RequestResult{
 				RequestResult{
-					MsgFormat: "QLMdf",
+					MsgFormat: "odf",
 					Return:    &Return{ReturnCode: "200"},
 					RequestId: &Id{Text: "REQ654534"},
 					Message: &Message{
@@ -428,9 +428,9 @@ func TestMarshalReadResponseMetadata(t *testing.T) {
 }
 
 func TestMarshalReadResponseWithRequestIdFormat(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <response>
-        <result msgformat="QLMdf">
+        <result msgformat="odf">
             <return returnCode="200"></return>
             <requestId format="REQ">REQ654534</requestId>
             <msg>
@@ -446,14 +446,14 @@ func TestMarshalReadResponseWithRequestIdFormat(t *testing.T) {
             </msg>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Response: &Response{
 			Results: []RequestResult{
 				RequestResult{
-					MsgFormat: "QLMdf",
+					MsgFormat: "odf",
 					Return:    &Return{ReturnCode: "200"},
 					RequestId: &Id{
 						Format: "REQ",
@@ -480,7 +480,7 @@ func TestMarshalReadResponseWithRequestIdFormat(t *testing.T) {
 }
 
 func TestMarshalResponseWithNodes(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="10">
+	expected := `<omiEnvelope version="1.0" ttl="10">
     <response>
         <result>
             <return returnCode="200"></return>
@@ -490,8 +490,8 @@ func TestMarshalResponseWithNodes(t *testing.T) {
             </nodeList>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     10,
 		Response: &Response{
@@ -513,14 +513,14 @@ func TestMarshalResponseWithNodes(t *testing.T) {
 }
 
 func TestMarshalTypicalMinimalResponse(t *testing.T) {
-	expected := `<qlmEnvelope version="0.2" ttl="0">
+	expected := `<omiEnvelope version="0.2" ttl="0">
     <response>
         <result>
             <return returnCode="200"></return>
         </result>
     </response>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "0.2",
 		Ttl:     0,
 		Response: &Response{
@@ -535,8 +535,8 @@ func TestMarshalTypicalMinimalResponse(t *testing.T) {
 }
 
 func TestMarshalWriteRequest(t *testing.T) {
-	expected := `<qlmEnvelope version="1.0" ttl="-1">
-    <write msgformat="QLMdf" targetType="device">
+	expected := `<omiEnvelope version="1.0" ttl="-1">
+    <write msgformat="odf" targetType="device">
         <msg>
             <Objects>
                 <Object>
@@ -551,12 +551,12 @@ func TestMarshalWriteRequest(t *testing.T) {
             </Objects>
         </msg>
     </write>
-</qlmEnvelope>`
-	envelope := QlmEnvelope{
+</omiEnvelope>`
+	envelope := OmiEnvelope{
 		Version: "1.0",
 		Ttl:     -1,
 		Write: &WriteRequest{
-			MsgFormat:  "QLMdf",
+			MsgFormat:  "odf",
 			TargetType: "device",
 			Message: &Message{
 				Data: `
