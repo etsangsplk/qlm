@@ -1,6 +1,6 @@
 package mi
 
-type QlmEnvelope struct {
+type OmiEnvelope struct {
 	Version  string         `xml:"version,attr"`
 	Ttl      float64        `xml:"ttl,attr"`
 	Response *Response      `xml:"response"`
@@ -18,7 +18,7 @@ type RequestResult struct {
 	RequestId   *Id       `xml:"requestId"`
 	Message     *Message  `xml:"msg"`
 	NodeList    *NodeList `xml:"nodeList"`
-	QlmEnvelope *QlmEnvelope
+	OmiEnvelope *OmiEnvelope
 	MsgFormat   string `xml:"msgformat,attr,omitempty"`
 	TargetType  string `xml:"targetType,attr,omitempty"`
 }

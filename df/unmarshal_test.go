@@ -16,7 +16,7 @@ func TestUnmarshalWithInvalidXML(t *testing.T) {
 func TestUnmarshalWithoutObjects(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 		</Objects>
 		`
 	v, err := Unmarshal([]byte(data))
@@ -28,7 +28,7 @@ func TestUnmarshalWithoutObjects(t *testing.T) {
 func TestUnmarshalSchemaVersion(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd" version="1.0">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd" version="1.0">
 		</Objects>
 		`
 	v, err := Unmarshal([]byte(data))
@@ -40,7 +40,7 @@ func TestUnmarshalSchemaVersion(t *testing.T) {
 func TestUnmarshalWithObjectWithAttributes(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object type="SOME_CLASS_PREFERABLY_DEFINED_BY_UDEF" udef="appropriate.udef.code">
 				<id>SmartFridge22334411</id>
 			</Object>
@@ -59,7 +59,7 @@ func TestUnmarshalWithObjectWithAttributes(t *testing.T) {
 func TestUnmarshalWithObjectWithComplexId(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object>
 				<id idType="some id type" tagType="some tag type" startDate="2013-10-26T21:32:52" endDate="2015-10-26T21:32:52" udef="appropriate.udef.code">SmartFridge22334411</id>
 			</Object>
@@ -81,7 +81,7 @@ func TestUnmarshalWithObjectWithComplexId(t *testing.T) {
 func TestUnmarshalWithInfoItemWithOtherNames(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object type="Refrigerator Assembly Product">
 				<id>SmartFridge22334411</id>
 				<InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -101,7 +101,7 @@ func TestUnmarshalWithInfoItemWithOtherNames(t *testing.T) {
 func TestUnmarshalWithInfoItemWithUnixTimestampInValue(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object type="Refrigerator Assembly Product">
 				<id>SmartFridge22334411</id>
 				<InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">
@@ -119,7 +119,7 @@ func TestUnmarshalWithInfoItemWithUnixTimestampInValue(t *testing.T) {
 func TestUnmarshalWithObjectWithComplexDescription(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object type="Refrigerator Assembly Product">
 				<id>SmartFridge22334411</id>
 				<description lang="en" udef="appropriate.udef.code">Power consumption values with timestamp.</description>
@@ -137,7 +137,7 @@ func TestUnmarshalWithObjectWithComplexDescription(t *testing.T) {
 func TestUnmarshalWithInfoItemWithComplexDescription(t *testing.T) {
 	data := `
 		<?xml version="1.0" encoding="UTF-8"?>
-		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QLMdf.xsd">
+		<Objects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odf.xsd">
 			<Object type="Refrigerator Assembly Product">
 				<id>SmartFridge22334411</id>
 				<InfoItem udef="b.o.9_1.1.14.13" name="Consumed Electrical Power Measure">

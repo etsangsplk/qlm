@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<qlm:qlmEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qlm="QLMmi.xsd" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
-    <qlm:read msgformat="QLM_mf.xsd">
-        <qlm:nodeList type="URL">
-            <qlm:node>http://192.168.0.1/</qlm:node>
-            <qlm:node>http://192.168.0.2/</qlm:node>
-        </qlm:nodeList>
-        <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+<omi:omiEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:omi="omi.xsd" xsi:schemaLocation="omi.xsd" version="1.0" ttl="10">
+    <omi:read msgformat="omi.xsd">
+        <omi:nodeList type="URL">
+            <omi:node>http://192.168.0.1/</omi:node>
+            <omi:node>http://192.168.0.2/</omi:node>
+        </omi:nodeList>
+        <omi:msg xmlns="odf.xsd" xsi:schemaLocation="odf.xsd">
             <Objects>
                 <Object>
                     <id>SmartFridge22334411</id>
                     <InfoItem name="PowerConsumption"></InfoItem>
                 </Object>
             </Objects>
-        </qlm:msg>
-    </qlm:read>
-</qlm:qlmEnvelope>
+        </omi:msg>
+    </omi:read>
+</omi:omiEnvelope>

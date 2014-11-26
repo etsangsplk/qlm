@@ -99,7 +99,7 @@ func TestUnmarshalMultiplePayloadResponse(t *testing.T) {
 				assert.Equal(t, `11,22,33
                 44,55,66`, v.Response.Results[1].Message.Data)
 
-				assert.Equal(t, "QLMdf", v.Response.Results[2].MsgFormat)
+				assert.Equal(t, "odf", v.Response.Results[2].MsgFormat)
 				assert.Equal(t, "200", v.Response.Results[2].Return.ReturnCode)
 				assert.Equal(t, "REQ654534", v.Response.Results[2].RequestId.Text)
 				assert.Equal(t, `
@@ -124,7 +124,7 @@ func TestUnmarshalPublishing(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, -1, v.Ttl)
-			assert.Equal(t, "QLMdf", v.Write.MsgFormat)
+			assert.Equal(t, "odf", v.Write.MsgFormat)
 			assert.Equal(t, `
             <Objects>
                 <Object>
@@ -146,7 +146,7 @@ func TestUnmarshalReadRequest(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, 10, v.Ttl)
-			assert.Equal(t, "QLM_mf.xsd", v.Read.MsgFormat)
+			assert.Equal(t, "omi.xsd", v.Read.MsgFormat)
 			assert.Equal(t, 3.5, v.Read.Interval)
 			assert.Equal(t, 10, v.Read.Oldest)
 			assert.Equal(t, "2014-01-01T00:00", v.Read.Begin)
@@ -196,7 +196,7 @@ func TestUnmarshalReadResponseMetadata(t *testing.T) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, 10, v.Ttl)
 			if assert.Len(t, v.Response.Results, 1) {
-				assert.Equal(t, "QLMdf", v.Response.Results[0].MsgFormat)
+				assert.Equal(t, "odf", v.Response.Results[0].MsgFormat)
 				assert.Equal(t, "200", v.Response.Results[0].Return.ReturnCode)
 				assert.Equal(t, "REQ654534", v.Response.Results[0].RequestId.Text)
 				assert.Equal(t, `
@@ -279,7 +279,7 @@ func TestUnmarshalWriteRequest(t *testing.T) {
 		if assert.Nil(t, err) {
 			assert.Equal(t, "1.0", v.Version)
 			assert.Equal(t, -1, v.Ttl)
-			assert.Equal(t, "QLMdf", v.Write.MsgFormat)
+			assert.Equal(t, "odf", v.Write.MsgFormat)
 			assert.Equal(t, "device", v.Write.TargetType)
 			assert.Equal(t, `
             <Objects>

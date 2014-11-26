@@ -1,10 +1,10 @@
-<!-- Example of a simple reply message using QLMdf payload. Namespace based validation included. -->
-<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
-    <qlm:response>
-        <qlm:result msgformat="QLMdf">
-            <qlm:return returnCode="200"></qlm:return>
-            <qlm:requestId>REQ654534</qlm:requestId>
-            <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+<!-- Example of a simple reply message using "odf" payload. Namespace based validation included. -->
+<omi:omiEnvelope xmlns:omi="omi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="omi.xsd" version="1.0" ttl="10">
+    <omi:response>
+        <omi:result msgformat="odf">
+            <omi:return returnCode="200"></omi:return>
+            <omi:requestId>REQ654534</omi:requestId>
+            <omi:msg xmlns="odf.xsd" xsi:schemaLocation="odf.xsd">
                 <Objects>
                     <Object>
                         <id>SmartFridge22334411</id>
@@ -14,8 +14,8 @@
                         </InfoItem>
                     </Object>
                 </Objects>
-            </qlm:msg>
-        </qlm:result>
-    </qlm:response>
-</qlm:qlmEnvelope>
+            </omi:msg>
+        </omi:result>
+    </omi:response>
+</omi:omiEnvelope>
 

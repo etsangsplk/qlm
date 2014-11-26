@@ -1,27 +1,27 @@
 <!-- Example of a response message using several different payloads. -->
-<qlm:qlmEnvelope xmlns:qlm="QLMmi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="QLMmi.xsd" version="1.0" ttl="10">
-    <qlm:response>
-        <qlm:result msgformat="obix">
-            <qlm:return returnCode="200"></qlm:return>
-            <qlm:requestId>REQ0011212121212</qlm:requestId>
-            <qlm:msg xsi:schemaLocation="http://obix.org/ns/schema/1.0/obix.xsd" xmlns="http://obix.org/ns/schema/1.0">
+<omi:omiEnvelope xmlns:omi="omi.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="omi.xsd" version="1.0" ttl="10">
+    <omi:response>
+        <omi:result msgformat="obix">
+            <omi:return returnCode="200"></omi:return>
+            <omi:requestId>REQ0011212121212</omi:requestId>
+            <omi:msg xsi:schemaLocation="http://obix.org/ns/schema/1.0/obix.xsd" xmlns="http://obix.org/ns/schema/1.0">
                 <obj href="http://myhome/thermostat" >
                     <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
                     <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
                     <bool name="furnaceOn" val="true"/>
                 </obj>
-            </qlm:msg>
-        </qlm:result>
-        <qlm:result msgformat="CSV">
-            <qlm:return returnCode="200"></qlm:return>
-            <qlm:requestId>REQ232323</qlm:requestId>
-            <qlm:msg>11,22,33
-                44,55,66</qlm:msg>
-        </qlm:result>
-        <qlm:result msgformat="QLMdf">
-            <qlm:return returnCode="200"></qlm:return>
-            <qlm:requestId>REQ654534</qlm:requestId>
-            <qlm:msg xmlns="QLMdf.xsd" xsi:schemaLocation="QLMdf.xsd">
+            </omi:msg>
+        </omi:result>
+        <omi:result msgformat="CSV">
+            <omi:return returnCode="200"></omi:return>
+            <omi:requestId>REQ232323</omi:requestId>
+            <omi:msg>11,22,33
+                44,55,66</omi:msg>
+        </omi:result>
+        <omi:result msgformat="odf">
+            <omi:return returnCode="200"></omi:return>
+            <omi:requestId>REQ654534</omi:requestId>
+            <omi:msg xmlns="odf.xsd" xsi:schemaLocation="odf.xsd">
                 <Objects>
                     <Object>
                         <id>SmartFridge22334411</id>
@@ -30,7 +30,7 @@
                         </InfoItem>
                     </Object>
                 </Objects>
-            </qlm:msg>
-        </qlm:result>
-    </qlm:response>
-</qlm:qlmEnvelope>
+            </omi:msg>
+        </omi:result>
+    </omi:response>
+</omi:omiEnvelope>
